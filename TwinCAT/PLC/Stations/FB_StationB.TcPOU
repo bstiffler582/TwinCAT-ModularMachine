@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_StationB" Id="{716db5b2-07d6-4271-a050-e5d80132399e}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_StationB IMPLEMENTS IStation
+VAR_INPUT
+	PRX_1			AT %I* : BOOL;
+	PRX_2			AT %I* : BOOL;
+	PRX_3			AT %I* : BOOL;
+	POT_1			AT %I* : INT;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	bEnabled		: BOOL;
+	nIndex			: DINT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Property Name="Enabled" Id="{4ec70c7a-408f-478c-b81f-d705e8f6d56d}">
+      <Declaration><![CDATA[PROPERTY Enabled : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{93ccd77d-c937-403b-86dd-9c761fb3b964}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Enabled := THIS^.bEnabled;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{52264115-133f-4801-8236-bb65603f58cb}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[THIS^.bEnabled := Enabled;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Method Name="Execute" Id="{2e77544a-4c5f-4a7e-8e83-47f7dd16e087}">
+      <Declaration><![CDATA[METHOD Execute
+VAR_INST
+	rand		: DRAND;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF nIndex > 0 THEN
+	rand(Seed:=TO_INT(THIS^.nIndex) + 10);
+	PRX_1 := (rand.Num > 0.5);
+	PRX_2 := (rand.Num < 0.4);
+	PRX_3 := (rand.Num > 0.25);
+	POT_1 := TO_INT(rand.Num * 100);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Index" Id="{fa7a5c65-61a8-411b-a976-9f00dc86d6ec}">
+      <Declaration><![CDATA[PROPERTY Index : DINT
+]]></Declaration>
+      <Get Name="Get" Id="{8cb56f10-c75e-42a9-bd98-e28ff3ebe99e}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Index := THIS^.nIndex;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{29ed78c6-84d9-4e1b-803b-05ca5a09abe4}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[THIS^.nIndex := Index;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+  </POU>
+</TcPlcObject>

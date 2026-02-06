@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <Itf Name="IStation" Id="{ff1f012a-557f-4092-a110-cbfea7b12f66}">
+    <Declaration><![CDATA[INTERFACE IStation
+]]></Declaration>
+    <Property Name="Enabled" Id="{bcdec233-c136-4ced-a9f3-6409b2f70365}">
+      <Declaration><![CDATA[PROPERTY Enabled : BOOL]]></Declaration>
+      <Get Name="Get" Id="{2a0a2e04-2229-439a-a1dd-06fa563021d5}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+      <Set Name="Set" Id="{a35044b9-82c5-4ae0-9020-63e66ad1e291}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Set>
+    </Property>
+    <Method Name="Execute" Id="{1c99f3c0-b0d7-4a9a-8630-8b442b94cb12}">
+      <Declaration><![CDATA[METHOD Execute
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Property Name="Index" Id="{a79859f1-b9e2-4a24-92e1-6121500e96bd}">
+      <Declaration><![CDATA[PROPERTY Index : DINT]]></Declaration>
+      <Get Name="Get" Id="{36f288f1-c4d9-4fb9-bdb7-96f51fe63f0e}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+      <Set Name="Set" Id="{6b03bcb8-136f-4359-b2bb-5674f0aa092d}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Set>
+    </Property>
+  </Itf>
+</TcPlcObject>

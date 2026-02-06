@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <GVL Name="GVL_Stations" Id="{ba5c82c7-e472-49d1-91a6-5ad6132339d1}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	A		: ARRAY[0..CONST.MAX_STATIONS - 1] OF FB_StationA;
+	B		: ARRAY[0..CONST.MAX_STATIONS - 1] OF FB_StationB;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="MAIN" Id="{16911ff9-2178-48f2-ab01-a5642e1da1e4}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	bInit					: BOOL := TRUE;
+	Layout					: STRING;
+	nStationA, nStationB	: DINT;
+	FileIo					: FB_FileIO;
+	
+	i						: DINT;
+	Stations				: ARRAY[0..CONST.MAX_STATIONS - 1] OF IStation;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// initialization
+IF bInit THEN
+	IF FileIo.ReadAllText('C:\Temp\layout.txt', Layout) THEN
+		Initialize();
+		bInit := FALSE;
+	END_IF
+END_IF
+
+// execute
+FOR i := 0 TO CONST.MAX_STATIONS - 1 DO
+	IF Stations[i] <> 0 AND_THEN Stations[i].Enabled THEN
+		Stations[i].Execute();
+	END_IF
+END_FOR]]></ST>
+    </Implementation>
+    <Action Name="Initialize" Id="{8f0ac12b-9ea0-46a8-a447-4982b382ccad}">
+      <Implementation>
+        <ST><![CDATA[FOR i := 0 TO CONST.MAX_STATIONS - 1 DO
+	IF Layout[i] = 65 THEN // 'A'
+		Stations[i] := GVL_Stations.A[nStationA];
+		GVL_Stations.A[nStationA].Enabled := TRUE;
+		GVL_Stations.A[nStationA].Index := i + 1;
+		nStationA := nStationA + 1;
+	ELSIF Layout[i] = 66 THEN // 'B'
+		Stations[i] := GVL_Stations.B[nStationB];
+		GVL_Stations.B[nStationB].Enabled := TRUE;
+		GVL_Stations.B[nStationB].Index := i + 1;
+		nStationB := nStationB + 1;
+	END_IF
+END_FOR
+]]></ST>
+      </Implementation>
+    </Action>
+  </POU>
+</TcPlcObject>

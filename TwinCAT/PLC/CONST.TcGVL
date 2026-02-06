@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <GVL Name="CONST" Id="{a6f7558e-7310-4080-a423-e00692c98531}" ParameterList="True">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL CONSTANT
+	MAX_STATIONS	: USINT := 10;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>
