@@ -33,14 +33,14 @@ END_FOR]]></ST>
         <ST><![CDATA[FOR i := 0 TO CONST.MAX_STATIONS - 1 DO
 	IF Layout[i] = 65 THEN // 'A'
 		Stations[i] := GVL_Stations.A[nStationA];
-		GVL_Stations.A[nStationA].Enabled := TRUE;
-		GVL_Stations.A[nStationA].Index := i + 1;
 		nStationA := nStationA + 1;
 	ELSIF Layout[i] = 66 THEN // 'B'
 		Stations[i] := GVL_Stations.B[nStationB];
-		GVL_Stations.B[nStationB].Enabled := TRUE;
-		GVL_Stations.B[nStationB].Index := i + 1;
 		nStationB := nStationB + 1;
+	END_IF
+	IF Stations[i] <> 0 THEN
+		Stations[i].Enabled := TRUE;
+		Stations[i].Index := i + 1;
 	END_IF
 END_FOR
 ]]></ST>
